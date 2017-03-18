@@ -1,0 +1,20 @@
+---
+language: php
+
+php:
+  - "7.0"
+  - "7.1"
+  - nightly
+
+env:
+  - PREFER_LOWEST=no
+  - PREFER_LOWEST=yes
+
+cache:
+  directories: $HOME/.composer/cache/files
+
+install:
+  - travis_retry composer install --prefer-dist
+  - test "$PREFER_LOWEST" = yes && travis_retry composer update --prefer-dist --prefer-lowest
+
+script: vendor/bin/phpunit

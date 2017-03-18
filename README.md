@@ -1,5 +1,7 @@
 # Enum class reflection extension for PHPStan
 
+[![Build Status](https://travis-ci.org/timeweb/phpstan-enum.svg?branch=master)](https://travis-ci.org/timeweb/phpstan-enum)
+
 * [PHPStan](https://github.com/phpstan/phpstan)
 * [PHP Enum](https://github.com/myclabs/php-enum)
 
