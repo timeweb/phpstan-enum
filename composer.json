@@ -1,0 +1,26 @@
+{
+    "name": "timeweb/phpstan-enum",
+    "description": "Enum class reflection extension for PHPStan",
+    "keywords": ["enum", "phpstan"],
+    "license": "MIT",
+    "require": {
+        "myclabs/php-enum": "^1.2",
+        "phpstan/phpstan": "^0.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Timeweb\\PHPStan\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/_fixture/"
+        ]
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
