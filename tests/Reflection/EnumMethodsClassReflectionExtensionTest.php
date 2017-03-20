@@ -2,13 +2,20 @@
 
 declare(strict_types=1);
 
-use Timeweb\PHPStan\Reflection\EnumMethodReflection;
-use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
+use MyCLabs\Enum\Enum;
 use PHPStan\Reflection\ClassReflection;
 use PHPUnit\Framework\TestCase;
+use Timeweb\PHPStan\Reflection\EnumMethodReflection;
+use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
 
+/**
+ * @coversDefaultClass Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension
+ */
 class EnumMethodsClassReflectionExtensionTest extends TestCase
 {
+    /**
+     * @var EnumMethodsClassReflectionExtension
+     */
     protected $reflectionExtension;
 
     public function setUp()
@@ -17,9 +24,10 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
     }
 
     /**
+     * @covers ::hasMethod
      * @dataProvider methodNameDataProvider
      */
-    public function testMethodPresenceCanBeDetermined(bool $expected, string $methodName)
+    public function testEnumMethodsCanBeFoundInEnumSubclasses(bool $expected, string $methodName)
     {
         $classReflection = $this->createMock(ClassReflection::class);
 
@@ -30,7 +38,7 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
 
         $classReflection->expects($this->once())
             ->method('isSubclassOf')
-            ->with($this->equalTo(MyCLabs\Enum\Enum::class))
+            ->with($this->equalTo(Enum::class))
             ->will($this->returnValue(true))
         ;
 
@@ -47,11 +55,33 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
         ];
     }
 
-    public function testMethodReflectionCanBeObtained()
+    /**
+     * @covers ::hasMethod
+     */
+    public function testEnumMethodsCannotBeFoundInNonEnumSubclasses()
     {
         $classReflection = $this->createMock(ClassReflection::class);
 
-        $methodReflection = $this->reflectionExtension->getMethod($classReflection, 'NAME');
+        $classReflection->expects($this->once())
+            ->method('isSubclassOf')
+            ->with($this->equalTo(Enum::class))
+            ->will($this->returnValue(false))
+        ;
+
+        $hasMethod = $this->reflectionExtension->hasMethod($classReflection, 'SOME_NAME');
+
+        $this->assertFalse($hasMethod);
+    }
+
+    /**
+     * @covers ::getMethod
+     * @uses Timeweb\PHPStan\Reflection\EnumMethodReflection
+     */
+    public function testEnumMethodReflectionCanBeObtained()
+    {
+        $classReflection = $this->createMock(ClassReflection::class);
+
+        $methodReflection = $this->reflectionExtension->getMethod($classReflection, 'SOME_NAME');
 
         $this->assertInstanceOf(EnumMethodReflection::class, $methodReflection);
     }
