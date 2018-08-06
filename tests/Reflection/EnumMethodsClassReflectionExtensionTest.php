@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use MyCLabs\Enum\Enum;
-use PHPStan\Reflection\ClassReflection;
-use PHPUnit\Framework\TestCase;
+use PHPStan\Testing\TestCase;
 use Timeweb\PHPStan\Reflection\EnumMethodReflection;
 use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
 
@@ -14,12 +12,18 @@ use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
 class EnumMethodsClassReflectionExtensionTest extends TestCase
 {
     /**
+     * @var \PHPStan\Broker\Broker
+     */
+    protected $broker;
+
+    /**
      * @var EnumMethodsClassReflectionExtension
      */
     protected $reflectionExtension;
 
     public function setUp()
     {
+        $this->broker = $this->createBroker();
         $this->reflectionExtension = new EnumMethodsClassReflectionExtension();
     }
 
@@ -29,19 +33,7 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
      */
     public function testEnumMethodsCanBeFoundInEnumSubclasses(bool $expected, string $methodName)
     {
-        $classReflection = $this->createMock(ClassReflection::class);
-
-        $classReflection->expects($this->once())
-            ->method('getNativeReflection')
-            ->will($this->returnValue(new ReflectionClass(EnumFixture::class)))
-        ;
-
-        $classReflection->expects($this->once())
-            ->method('isSubclassOf')
-            ->with($this->equalTo(Enum::class))
-            ->will($this->returnValue(true))
-        ;
-
+        $classReflection = $this->broker->getClass(EnumFixture::class);
         $hasMethod = $this->reflectionExtension->hasMethod($classReflection, $methodName);
 
         $this->assertEquals($expected, $hasMethod);
@@ -60,14 +52,7 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
      */
     public function testEnumMethodsCannotBeFoundInNonEnumSubclasses()
     {
-        $classReflection = $this->createMock(ClassReflection::class);
-
-        $classReflection->expects($this->once())
-            ->method('isSubclassOf')
-            ->with($this->equalTo(Enum::class))
-            ->will($this->returnValue(false))
-        ;
-
+        $classReflection = $this->broker->getClass(EnumFixture::class);
         $hasMethod = $this->reflectionExtension->hasMethod($classReflection, 'SOME_NAME');
 
         $this->assertFalse($hasMethod);
@@ -79,8 +64,7 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
      */
     public function testEnumMethodReflectionCanBeObtained()
     {
-        $classReflection = $this->createMock(ClassReflection::class);
-
+        $classReflection = $this->broker->getClass(EnumFixture::class);
         $methodReflection = $this->reflectionExtension->getMethod($classReflection, 'SOME_NAME');
 
         $this->assertInstanceOf(EnumMethodReflection::class, $methodReflection);
