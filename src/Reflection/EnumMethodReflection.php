@@ -6,7 +6,9 @@ namespace Timeweb\PHPStan\Reflection;
 
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
+use PHPStan\Type\ObjectType;
 
 class EnumMethodReflection implements MethodReflection
 {
@@ -58,6 +60,8 @@ class EnumMethodReflection implements MethodReflection
 
     public function getVariants(): array
     {
-        return [];
+        return [
+            new FunctionVariant([], false, new ObjectType($this->classReflection->getName())),
+        ];
     }
 }
