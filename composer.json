@@ -4,8 +4,9 @@
     "keywords": ["enum", "phpstan"],
     "license": "MIT",
     "require": {
+        "php": "~7.1",
         "myclabs/php-enum": "^1.2",
-        "phpstan/phpstan": "^0.10"
+        "phpstan/phpstan": "^0.10|^0.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
