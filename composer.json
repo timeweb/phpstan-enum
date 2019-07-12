@@ -1,6 +1,7 @@
 {
     "name": "timeweb/phpstan-enum",
     "description": "Enum class reflection extension for PHPStan",
+    "type": "phpstan-extension",
     "keywords": ["enum", "phpstan"],
     "license": "MIT",
     "require": {
@@ -23,5 +24,12 @@
     },
     "scripts": {
         "test": "phpunit"
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
     }
 }
