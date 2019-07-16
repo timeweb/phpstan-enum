@@ -1,15 +1,14 @@
-FROM php:7.1
+FROM php:7.3
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
-    && php composer-setup.php \
-    && php -r "unlink('composer-setup.php');" \
-    && mv composer.phar /usr/local/bin/composer \
-    && apt-get update \
+# Install composer and required packages
+RUN apt-get update \
     && apt-get install -y zlib1g-dev \
     && docker-php-ext-install zip
 
-# enable phpdebug
+RUN curl https://raw.githubusercontent.com/composer/getcomposer.org/3c21a2c1affd88dd3fec6251e91a53e440bc2198/web/installer | php -- --quiet \
+    && mv composer.phar /usr/bin/composer
+
+# Enable phpdebug
 RUN apt-get install -y libxml2-dev \
     && docker-php-source extract \
     && cd /usr/src/php \
