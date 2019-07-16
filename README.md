@@ -22,3 +22,24 @@ And include extension.neon in your project's PHPStan config
 includes:
   - vendor/timeweb/phpstan-enum/extension.neon
 ```
+
+## Install for Local Development 
+
+### With docker:
+
+```
+git clone git@github.com:timeweb/phpstan-enum.git
+cd phpstan-enum
+make docker-build
+make install
+make phpunit
+```
+
+### Without docker (localy installed actual version of php, composer, etc):
+
+```
+git clone git@github.com:timeweb/phpstan-enum.git
+cd phpstan-enum
+make install
+make phpunit
+```
