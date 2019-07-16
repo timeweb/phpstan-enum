@@ -1,4 +1,4 @@
-FROM php:7.3
+FROM php:7.2
 
 # Install composer and required packages
 RUN apt-get update \
