@@ -11,4 +11,4 @@ test:
 	phpunit
 
 test-coverage:
-	phpunit --coverage-html=_coverage --coverage-text
+	phpunit  -d memory_limit=256m --coverage-html=_coverage --coverage-text
