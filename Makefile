@@ -1,5 +1,5 @@
 ## Add dockerized commands to path
-PATH := tools:$(PATH)
+PATH := $(PATH):tools
 
 docker-build:
 	docker build  -t timeweb/phpstan-enum .
