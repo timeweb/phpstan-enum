@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/timeweb/phpstan-enum.svg?branch=master)](https://travis-ci.org/timeweb/phpstan-enum)
 
-* [PHPStan](https://github.com/phpstan/phpstan)
+* [PHPStan](https://phpstan.org/)
 * [PHP Enum](https://github.com/myclabs/php-enum)
 
 This extension defines dynamic methods for `MyCLabs\Enum\Enum` subclasses.
