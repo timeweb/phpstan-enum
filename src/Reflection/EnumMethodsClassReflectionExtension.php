@@ -14,9 +14,7 @@ class EnumMethodsClassReflectionExtension implements MethodsClassReflectionExten
     public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         if ($classReflection->isSubclassOf(Enum::class)) {
-            $array = $classReflection->getNativeReflection()->getMethod('toArray')->invoke(null);
-
-            return array_key_exists($methodName, $array);
+            return $classReflection->getNativeReflection()->hasConstant($methodName);
         }
 
         return false;
