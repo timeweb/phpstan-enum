@@ -23,7 +23,7 @@ class EnumMethodsClassReflectionExtensionTest extends TestCase
      */
     protected $reflectionExtension;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->broker = $this->createBroker();
         $this->reflectionExtension = new EnumMethodsClassReflectionExtension();
