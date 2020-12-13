@@ -18,9 +18,9 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/_fixture/"
-        ]
+        "psr-4": {
+            "Timeweb\\Tests\\PHPStan\\": "tests/"
+        }
     },
     "scripts": {
         "test": "phpunit"

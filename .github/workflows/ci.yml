@@ -10,11 +10,12 @@ jobs:
         php: ['7.1', '7.2', '7.3', '7.4', '8.0']
         prefer: ['lowest', 'stable']
 
-    name: PHP ${{ matrix.php }} with ${{ matrix.prefer }} composer prefer option
+    name: Test on PHP ${{ matrix.php }} with ${{ matrix.prefer }} composer prefer option
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -35,7 +36,30 @@ jobs:
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer update --prefer-${{ matrix.prefer }} --prefer-dist --no-progress --no-suggest
+        run: composer update --prefer-${{ matrix.prefer }} --prefer-dist --no-progress
 
       - name: Run tests
         run: composer test
+
+  linter:
+    name: Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.1
+
+      - name: Install dependencies
+        run: composer update --prefer-stable --prefer-dist --no-progress
+
+      - name: Lint Code
+        uses: github/super-linter@v3
+        env:
+          FILTER_REGEX_EXCLUDE: .*vendor.*
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_PHP_PSALM: false

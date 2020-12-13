@@ -12,13 +12,13 @@ This extension defines dynamic methods for `MyCLabs\Enum\Enum` subclasses.
 
 To use this extension, require it with [Composer](https://getcomposer.org)
 
-```
+```bash
 composer require --dev timeweb/phpstan-enum
 ```
 
 And include extension.neon in your project's PHPStan config
 
-```
+```yaml
 includes:
   - vendor/timeweb/phpstan-enum/extension.neon
 ```
