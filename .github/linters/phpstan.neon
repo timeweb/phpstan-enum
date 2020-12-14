@@ -1,0 +1,6 @@
+parameters:
+    level: max
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#constructor invoked with#'
+        - '#FunctionVariant constructor expects#'

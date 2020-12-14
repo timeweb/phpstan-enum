@@ -1,0 +1,65 @@
+name: CI
+
+on: push
+
+jobs:
+  php-tests:
+
+    strategy:
+      matrix:
+        php: ['7.1', '7.2', '7.3', '7.4', '8.0']
+        prefer: ['lowest', 'stable']
+
+    name: Test on PHP ${{ matrix.php }} with ${{ matrix.prefer }} composer prefer option
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}-${{ matrix.prefer }}-
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ matrix.prefer }}-
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --prefer-${{ matrix.prefer }} --prefer-dist --no-progress
+
+      - name: Run tests
+        run: composer test
+
+  linter:
+    name: Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.1
+
+      - name: Install dependencies
+        run: composer update --prefer-stable --prefer-dist --no-progress
+
+      - name: Lint Code
+        uses: github/super-linter@v3
+        env:
+          FILTER_REGEX_EXCLUDE: .*vendor.*
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_PHP_PSALM: false

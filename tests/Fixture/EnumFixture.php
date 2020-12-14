@@ -1,6 +1,12 @@
 <?php
 
-class EnumFixture extends MyCLabs\Enum\Enum
+declare(strict_types=1);
+
+namespace Timeweb\Tests\PHPStan\Fixture;
+
+use MyCLabs\Enum\Enum;
+
+class EnumFixture extends Enum
 {
     const MEMBER = 'member';
 
