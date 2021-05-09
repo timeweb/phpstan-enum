@@ -2,3 +2,6 @@ services:
   - class: Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension
     tags:
       - phpstan.broker.methodsClassReflectionExtension
+  - class: Timeweb\PHPStan\Rule\EnumAlwaysUsedConstants
+    tags:
+      - phpstan.constants.alwaysUsedClassConstantsExtension
