@@ -39,7 +39,6 @@ class EnumAlwaysUsedConstantsExtensionTest extends TestCase
         $constantReflection = $classReflection->getConstant($constantName);
 
         $this->assertTrue($this->constantsExtension->isAlwaysUsed($constantReflection));
-
     }
 
     /**
