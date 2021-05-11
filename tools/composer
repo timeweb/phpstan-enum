@@ -6,7 +6,7 @@ test -t 1 && USE_TTY="--tty"
 
 docker run --rm --interactive ${USE_TTY} \
     --user $UID:$UID \
-    --volume $PWD:/app \
-    --volume $HOME/.composer:/tmp/.composer \
+    --volume "$PWD":/app \
+    --volume "$HOME"/.composer:/tmp/.composer \
     --env COMPOSER_HOME=/tmp/.composer \
     timeweb/phpstan-enum composer "$@"
