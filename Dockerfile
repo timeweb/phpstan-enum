@@ -3,6 +3,7 @@ FROM php:7.1
 # Enable phpdebug
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libxml2-dev \
+    && rm -rf /var/lib/apt/lists/* \
     && docker-php-source extract \
     && cd /usr/src/php \
     && ./configure --enable-phpdbg \
