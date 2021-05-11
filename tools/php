@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+test -t 1 && USE_TTY="--tty"
+
+docker run --rm --init --interactive ${USE_TTY} \
+    --user $UID:$UID \
+    --volume $PWD:/app \
+    timeweb/phpstan-enum php "$@"
