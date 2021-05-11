@@ -23,11 +23,11 @@ includes:
   - vendor/timeweb/phpstan-enum/extension.neon
 ```
 
-## Install for Local Development 
+## Install for Local Development
 
-### With docker:
+### With docker
 
-```
+```bash
 git clone git@github.com:timeweb/phpstan-enum.git
 cd phpstan-enum
 make docker-build
@@ -35,9 +35,9 @@ make install
 make phpunit
 ```
 
-### Without docker (localy installed actual version of php, composer, etc):
+### Without docker (localy installed actual version of php, composer, etc)
 
-```
+```bash
 git clone git@github.com:timeweb/phpstan-enum.git
 cd phpstan-enum
 make install
