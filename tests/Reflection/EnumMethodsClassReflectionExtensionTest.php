@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Timeweb\Tests\PHPStan\Reflection;
 
 use PHPStan\Reflection\ParametersAcceptorSelector;
-use PHPStan\Testing\TestCase;
+use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\VerbosityLevel;
 use Timeweb\PHPStan\Reflection\EnumMethodReflection;
 use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
@@ -14,7 +14,7 @@ use Timeweb\Tests\PHPStan\Fixture\EnumFixture;
 /**
  * @coversDefaultClass \Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension
  */
-class EnumMethodsClassReflectionExtensionTest extends TestCase
+class EnumMethodsClassReflectionExtensionTest extends PHPStanTestCase
 {
     /**
      * @var \PHPStan\Broker\Broker
