@@ -4,3 +4,4 @@ parameters:
     ignoreErrors:
         - '#constructor invoked with#'
         - '#FunctionVariant constructor expects#'
+        - '#Class PHPStan\Testing\PHPStanTestCase not found#'
