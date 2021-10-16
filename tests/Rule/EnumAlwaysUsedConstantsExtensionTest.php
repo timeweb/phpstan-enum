@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Timeweb\Tests\PHPStan\Rule;
 
 use PHPStan\Reflection\ReflectionProvider;
-use PHPStan\Testing\PHPStanTestCase;
 use Timeweb\PHPStan\Rule\EnumAlwaysUsedConstantsExtension;
+use Timeweb\Tests\PHPStan\AbstractTestCase;
 use Timeweb\Tests\PHPStan\Fixture\EnumFixture;
 
 /**
  * @coversDefaultClass \Timeweb\PHPStan\Rule\EnumAlwaysUsedConstantsExtension
  */
-class EnumAlwaysUsedConstantsExtensionTest extends PHPStanTestCase
+class EnumAlwaysUsedConstantsExtensionTest extends AbstractTestCase
 {
     /**
      * @var ReflectionProvider
