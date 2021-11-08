@@ -30,6 +30,9 @@ jobs:
       - name: Run tests
         run: composer test
 
+      - name: Run PHPStan
+        run: vendor/bin/phpstan
+
   linter:
     name: Linter
     runs-on: ubuntu-latest
