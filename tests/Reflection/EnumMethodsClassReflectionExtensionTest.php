@@ -46,7 +46,7 @@ final class EnumMethodsClassReflectionExtensionTest extends PHPStanTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{bool, string}>
      */
     public function methodNameDataProvider(): array
     {
