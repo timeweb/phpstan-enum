@@ -6,16 +6,16 @@ namespace Timeweb\Tests\PHPStan\Reflection;
 
 use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Reflection\ReflectionProvider;
+use PHPStan\Testing\PHPStanTestCase;
 use PHPStan\Type\VerbosityLevel;
 use Timeweb\PHPStan\Reflection\EnumMethodReflection;
 use Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension;
-use Timeweb\Tests\PHPStan\AbstractTestCase;
 use Timeweb\Tests\PHPStan\Fixture\EnumFixture;
 
 /**
  * @coversDefaultClass \Timeweb\PHPStan\Reflection\EnumMethodsClassReflectionExtension
  */
-class EnumMethodsClassReflectionExtensionTest extends AbstractTestCase
+final class EnumMethodsClassReflectionExtensionTest extends PHPStanTestCase
 {
     /**
      * @var ReflectionProvider
