@@ -14,9 +14,9 @@ use Timeweb\Tests\PHPStan\Fixture\EnumFixture;
 class EnumAlwaysUsedConstantsExtensionTest extends PHPStanTestCase
 {
     /**
-     * @var \PHPStan\Broker\Broker
+     * @var \PHPStan\Reflection\ReflectionProvider
      */
-    protected $broker;
+    protected $reflectionProvider;
 
     /**
      * @var EnumAlwaysUsedConstantsExtension
@@ -25,7 +25,7 @@ class EnumAlwaysUsedConstantsExtensionTest extends PHPStanTestCase
 
     public function setUp(): void
     {
-        $this->broker = $this->createBroker();
+        $this->reflectionProvider = $this->createReflectionProvider();
         $this->constantsExtension = new EnumAlwaysUsedConstantsExtension();
     }
 
@@ -35,7 +35,7 @@ class EnumAlwaysUsedConstantsExtensionTest extends PHPStanTestCase
      */
     public function testEnumConstantsAreConsideredAsAlwaysUsed(string $constantName): void
     {
-        $classReflection = $this->broker->getClass(EnumFixture::class);
+        $classReflection = $this->reflectionProvider->getClass(EnumFixture::class);
         $constantReflection = $classReflection->getConstant($constantName);
 
         $this->assertTrue($this->constantsExtension->isAlwaysUsed($constantReflection));
