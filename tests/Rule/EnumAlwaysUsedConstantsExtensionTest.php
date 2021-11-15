@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Timeweb\Tests\PHPStan\Rule;
 
-use PHPStan\Testing\TestCase;
+use PHPStan\Testing\PHPStanTestCase;
 use Timeweb\PHPStan\Rule\EnumAlwaysUsedConstantsExtension;
 use Timeweb\Tests\PHPStan\Fixture\EnumFixture;
 
 /**
  * @coversDefaultClass \Timeweb\PHPStan\Rule\EnumAlwaysUsedConstantsExtension
  */
-class EnumAlwaysUsedConstantsExtensionTest extends TestCase
+class EnumAlwaysUsedConstantsExtensionTest extends PHPStanTestCase
 {
     /**
      * @var \PHPStan\Broker\Broker
