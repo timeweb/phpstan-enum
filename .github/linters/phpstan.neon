@@ -1,3 +1,6 @@
+includes:
+    - '%currentWorkingDirectory%/extension.neon'
+
 parameters:
     level: max
     checkGenericClassInNonGenericObjectType: false
