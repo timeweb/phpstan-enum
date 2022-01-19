@@ -63,25 +63,15 @@ class EnumMethodReflection implements MethodReflection
 
     public function getVariants(): array
     {
-        if (true === (new \ReflectionClass(FunctionVariant::class))->hasMethod('getTemplateTypeMap')) {
-            return [
-                new FunctionVariant(
-                    TemplateTypeMap::createEmpty(),
-                    TemplateTypeMap::createEmpty(),
-                    [],
-                    false,
-                    new ObjectType($this->classReflection->getName())
-                ),
-            ];
-        } else {
-            return [
-                new FunctionVariant(
-                    [],
-                    false,
-                    new ObjectType($this->classReflection->getName())
-                ),
-            ];
-        }
+        return [
+            new FunctionVariant(
+                TemplateTypeMap::createEmpty(),
+                TemplateTypeMap::createEmpty(),
+                [],
+                false,
+                new ObjectType($this->classReflection->getName())
+            ),
+        ];
     }
 
     public function getDocComment(): ?string
