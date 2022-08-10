@@ -16,9 +16,13 @@ To use this extension, require it with [Composer](https://getcomposer.org)
 composer require --dev timeweb/phpstan-enum
 ```
 
-And include extension.neon in your project's PHPStan config
+If you also install [phpstan/extension-installer](https://github.com/phpstan/extension-installer) then you're all set!
 
-```yaml
+### Manual installation
+
+If you don't want to use `phpstan/extension-installer`, include extension.neon in your project's PHPStan config:
+
+```neon
 includes:
   - vendor/timeweb/phpstan-enum/extension.neon
 ```
