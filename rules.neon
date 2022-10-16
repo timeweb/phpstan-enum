@@ -1,0 +1,2 @@
+rules:
+    - Timeweb\PHPStan\Rule\NoDuplicateEnumValueRule
