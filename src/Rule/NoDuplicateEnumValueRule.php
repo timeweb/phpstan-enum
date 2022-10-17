@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Timeweb\PHPStan\Rule;
 
+use MyCLabs\Enum\Enum;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
@@ -30,6 +31,10 @@ class NoDuplicateEnumValueRule implements Rule
         $classReflection = $scope->getClassReflection();
         if (!$scope->isInClass() || !$classReflection) {
             throw new ShouldNotHappenException();
+        }
+
+        if (!$classReflection->isSubclassOf(Enum::class)) {
+            return [];
         }
 
         $duplicatedKeysValue = $this->findDuplicatedKeys($node);
