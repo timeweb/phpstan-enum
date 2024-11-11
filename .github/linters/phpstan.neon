@@ -3,7 +3,7 @@ includes:
 
 parameters:
     level: max
-    checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
+        - identifier: missingType.generics
         - '#constructor invoked with#'
         - '#FunctionVariant constructor expects#'
