@@ -1,7 +1,9 @@
 # Enum class reflection extension for PHPStan
 
-[![Packagist Version](https://img.shields.io/packagist/v/timeweb/phpstan-enum)](https://packagist.org/packages/timeweb/phpstan-enum)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/timeweb/phpstan-enum/CI)
+[![Build Status](https://github.com/timeweb/phpstan-enum/actions/workflows/ci.yml/badge.svg)](https://actions-badge.atrox.dev/timeweb/phpstan-enum/goto?ref=master)
+[![License](https://poser.pugx.org/timeweb/phpstan-enum/license)](https://packagist.org/packages/timeweb/phpstan-enum)
+[![Latest Stable Version](https://poser.pugx.org/timeweb/phpstan-enum/v/stable)](https://packagist.org/packages/timeweb/phpstan-enum)
+[![Latest Unstable Version](https://poser.pugx.org/timeweb/phpstan-enum/v/unstable)](https://packagist.org/packages/timeweb/phpstan-enum)
 
 - [PHPStan](https://phpstan.org/)
 - [PHP Enum](https://github.com/myclabs/php-enum)
