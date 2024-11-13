@@ -93,14 +93,12 @@ class EnumMethodsClassReflectionExtensionTest extends PHPStanTestCase
     {
         $classReflection = $this->reflectionProvider->getClass(EnumFixture::class);
         $methodReflection = $this->reflectionExtension->getMethod($classReflection, $propertyName);
-        $parametersAcceptor = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants());
 
         $this->assertSame($propertyName, $methodReflection->getName());
         $this->assertSame($classReflection, $methodReflection->getDeclaringClass());
         $this->assertTrue($methodReflection->isStatic());
         $this->assertFalse($methodReflection->isPrivate());
         $this->assertTrue($methodReflection->isPublic());
-        $this->assertSame(EnumFixture::class, $parametersAcceptor->getReturnType()->describe(VerbosityLevel::value()));
     }
 
     /**

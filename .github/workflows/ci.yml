@@ -4,18 +4,17 @@ on: push
 
 jobs:
   php-tests:
-
     strategy:
       matrix:
-        php: [ '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2' ]
-        prefer: [ 'lowest', 'stable' ]
+        php: ["7.4", "8.0", "8.1", "8.2", "8.3"]
+        prefer: ["lowest", "stable"]
 
     name: Test on PHP ${{ matrix.php }} with ${{ matrix.prefer }} composer prefer option
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
@@ -27,7 +26,7 @@ jobs:
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}-${{ matrix.prefer }}-
@@ -46,20 +45,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Master branch should be available for the linter
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.1
+          php-version: 7.4
 
       - name: Install dependencies
         run: composer update --prefer-stable --prefer-dist --no-progress
 
       - name: Lint Code
-        uses: github/super-linter@v4
+        uses: super-linter/super-linter@v7
         env:
           FILTER_REGEX_EXCLUDE: .*vendor.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CHECKOV: false
+          VALIDATE_JSCPD: false
           VALIDATE_PHP_PSALM: false
+          VALIDATE_PHP_PHPSTAN: false # temporary disabled until superlinter supports phpstan 2
+          VALIDATE_YAML_PRETTIER: false

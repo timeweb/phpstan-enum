@@ -1,36 +1,39 @@
 {
-    "name": "timeweb/phpstan-enum",
-    "description": "Enum class reflection extension for PHPStan",
-    "type": "phpstan-extension",
-    "keywords": ["enum", "phpstan"],
-    "license": "MIT",
-    "require": {
-        "php": "^7.1|^8.0",
-        "myclabs/php-enum": "^1.2",
-        "phpstan/phpstan": "^1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.0|^9.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Timeweb\\PHPStan\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Timeweb\\Tests\\PHPStan\\": "tests/"
-        }
-    },
-    "scripts": {
-        "test": "phpunit"
-    },
-    "extra": {
-        "phpstan": {
-            "includes": [
-                "extension.neon",
-                "rules.neon"
-            ]
-        }
+  "name": "timeweb/phpstan-enum",
+  "description": "Enum class reflection extension for PHPStan",
+  "type": "phpstan-extension",
+  "keywords": [
+    "enum",
+    "phpstan"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.4|^8.0",
+    "myclabs/php-enum": "^1.2",
+    "phpstan/phpstan": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.0|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Timeweb\\PHPStan\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Timeweb\\Tests\\PHPStan\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon",
+        "rules.neon"
+      ]
+    }
+  }
 }

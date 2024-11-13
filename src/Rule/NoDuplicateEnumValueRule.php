@@ -10,6 +10,7 @@ use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Node\ClassConstantsNode;
 use PHPStan\Rules\Rule;
+use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\ShouldNotHappenException;
 
 /**
@@ -43,11 +44,16 @@ class NoDuplicateEnumValueRule implements Rule
         }
 
         return [
-            sprintf(
-                'Enum %s contains duplicated values for %s properties',
-                $classReflection->getName(),
-                implode(', ', $duplicatedKeysValue)
-            ),
+            RuleErrorBuilder::message(
+                sprintf(
+                    'Enum %s contains duplicated values for %s properties',
+                    $classReflection->getName(),
+                    implode(', ', $duplicatedKeysValue)
+                )
+            )
+                ->line($node->getLine())
+                ->identifier('timewebEnum.duplicatedValues')
+                ->build(),
         ];
     }
 
