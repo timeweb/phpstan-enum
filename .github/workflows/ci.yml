@@ -63,7 +63,7 @@ jobs:
         run: composer update --prefer-stable --prefer-dist --no-progress
 
       - name: Lint Code
-        uses: super-linter/super-linter@v7
+        uses: super-linter/super-linter@v8.3.1
         env:
           FILTER_REGEX_EXCLUDE: .*vendor.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
