@@ -4,9 +4,10 @@ FROM php:7.4
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libxml2-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && docker-php-source extract \
-    && cd /usr/src/php \
-    && ./configure --enable-phpdbg \
+    && docker-php-source extract
+
+WORKDIR /usr/src/php
+RUN ./configure --enable-phpdbg \
     && docker-php-source delete
 
 # Install composer and required packages
