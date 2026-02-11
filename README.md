@@ -31,7 +31,7 @@ includes:
 
 ## Install for Local Development
 
-### With docker
+### With Docker
 
 ```bash
 git clone git@github.com:timeweb/phpstan-enum.git
@@ -41,7 +41,7 @@ make install
 make phpunit
 ```
 
-### Without docker (localy installed actual version of php, composer, etc)
+### Without Docker (localy installed actual version of php, composer, etc)
 
 ```bash
 git clone git@github.com:timeweb/phpstan-enum.git
