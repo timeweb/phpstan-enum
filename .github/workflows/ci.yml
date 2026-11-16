@@ -54,17 +54,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-
-      - name: Install dependencies
-        run: composer update --prefer-stable --prefer-dist --no-progress
-
+      # No "composer install" here: super-linter runs it in every composer.json of the workspace,
+      # and installing vendor/* packages as root projects fails.
       - name: Lint Code
         uses: super-linter/super-linter@v7
         env:
+          # The super-linter image lacks extensions (e.g. ext-xml) needed by dev dependencies it installs.
+          COMPOSER_IGNORE_PLATFORM_REQS: 1
           FILTER_REGEX_EXCLUDE: .*vendor.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_CHECKOV: false

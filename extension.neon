@@ -5,3 +5,6 @@ services:
   - class: Timeweb\PHPStan\Rule\EnumAlwaysUsedConstantsExtension
     tags:
       - phpstan.constants.alwaysUsedClassConstantsExtension
+  - class: Timeweb\PHPStan\Type\EnumValueTypeResolverExtension
+    tags:
+      - phpstan.broker.expressionTypeResolverExtension
